@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Health Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #3B82F6, #FFE5B4);
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #3B82F6;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        form {
+            display: grid;
+            gap: 15px;
+        }
+        input {
+            padding: 12px;
+            border: 1px solid #3B82F6;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: #FFE5B4;
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+        }
+        button {
+            padding: 12px;
+            background-color: #3B82F6;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #2563EB;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            input, button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Health Data</h1>
+        <form action="/predict" method="post">
+            <input type="hidden" name="name" value="{{ user_info.name }}">
+            <input type="hidden" name="email" value="{{ user_info.email }}">
+            <input type="number" name="age" placeholder="Age (e.g., 40-80)" required>
+            <input type="number" name="sex" placeholder="Sex (0=F, 1=M)" min="0" max="1" required>
+            <input type="number" name="cp" placeholder="Chest Pain Type (0-3)" min="0" max="3" required>
+            <input type="number" name="trestbps" placeholder="Resting BP (e.g., 90-200)" required>
+            <input type="number" name="chol" placeholder="Cholesterol (e.g., 100-600)" required>
+            <input type="number" name="fbs" placeholder="Fasting Blood Sugar (0-1)" min="0" max="1" required>
+            <input type="number" name="restecg" placeholder="Resting ECG (0-2)" min="0" max="2" required>
+            <input type="number" name="thalach" placeholder="Max Heart Rate (e.g., 70-200)" required>
+            <input type="number" name="exang" placeholder="Exercise Angina (0-1)" min="0" max="1" required>
+            <input type="number" name="oldpeak" placeholder="ST Depression (e.g., 0-6)" step="0.1" required>
+            <input type="number" name="slope" placeholder="Slope (0-2)" min="0" max="2" required>
+            <input type="number" name="ca" placeholder="Major Vessels (0-4)" min="0" max="4" required>
+            <input type="number" name="thal" placeholder="Thalassemia (0-3)" min="0" max="3" required>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
