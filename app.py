@@ -4,13 +4,24 @@ import pickle
 
 app = Flask(__name__)
 
+import os
+import pickle
+
+# Get the absolute path to the current file's directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Load the model and scaler
 try:
-    model = pickle.load(open('heart_disease_model.pkl', 'rb'))
-    scaler = pickle.load(open('scaler.pkl', 'rb'))
+    model_path = os.path.join(BASE_DIR, 'heart_disease_model.pkl')
+    scaler_path = os.path.join(BASE_DIR, 'scaler.pkl')
+
+    model = pickle.load(open(model_path, 'rb'))
+    scaler = pickle.load(open(scaler_path, 'rb'))
+
 except FileNotFoundError as e:
     print(f"Error: {e}. Ensure 'heart_disease_model.pkl' and 'scaler.pkl' are in the project directory.")
     exit(1)
+
 
 @app.route('/')
 def welcome():
